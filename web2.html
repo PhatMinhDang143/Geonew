@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+
+  <meta name="viewport"
+        content="width=device-width,
+                 initial-scale=1,
+                 maximum-scale=1,
+                 minimum-scale=1,
+                 user-scalable=no" />
+
+  <title>GeoGebra Fullscreen Mobile</title>
+
+  <script src="https://www.geogebra.org/apps/deployggb.js"></script>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      background: #fff;
+      touch-action: none;
+    }
+
+    #ggb {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background: white;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="ggb"></div>
+
+  <script>
+    const params = {
+      appName: "classic",      // ✔ đảm bảo đầy đủ chức năng trên mobile
+      filename: "geochung.ggb",
+
+      showMenuBar: true,       // ✔ cho phép dùng đầy đủ như máy tính
+      showToolBar: true,
+      showToolBarHelp: false,
+      showAlgebraInput: false,
+      showResetIcon: true,
+
+      enableShiftDragZoom: true,
+      enableRightClick: true,
+      enableLabelDrags: true,
+
+      scaleContainerClass: "geogebra-mobile"
+    };
+
+    const app = new GGBApplet(params, true);
+
+    window.addEventListener("load", () => {
+      app.inject("ggb");
+      window.addEventListener("resize", () => app.refreshViews());
+    });
+  </script>
+</body>
+</html>
